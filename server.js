@@ -7,22 +7,53 @@ app.use(morgan('combined'));
 
 
 
-var articleOne={
-    title: 'Article One |Rituraj Verma',
-    heading: 'Article One',
-    date: '5 oct, 2016',
-    content: `
-      <p>
-        this is the content of my first article this is the content of my first articlevvthis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first article
-        </p> 
-        <p>
-        this is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first article
-        </p> 
-        <p>
-        this is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first article
-        </p> `
+var articles = {
+'article-one' :{ title: 'Article One |Rituraj Verma',
+heading: 'Article One',
+date: '5 oct, 2016',
+content: `
+  <p>
+    this is the content of my first article this is the content of my first articlevvthis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first article
+    </p> 
+    <p>
+    this is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first article
+    </p> 
+    <p>
+    this is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first article
+    </p> `
     
-};
+},
+'article-two' :{
+     title: 'Article Two |Rituraj Verma',
+heading: 'Article Two',
+date: '10 oct, 2016',
+content: `
+  <p>
+    this is the content of my second article this is the content of my first articlevvthis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first article
+    </p> 
+    <p>
+    this is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first article
+    </p> 
+    <p>
+    this is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first article
+    </p> `
+},
+'article-three' :{ title: 'Article Three |Rituraj Verma',
+heading: 'Article Three',
+date: '15 oct, 2016',
+content: `
+  <p>
+    this is the content of my first article this is the content of my first articlevvthis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first article
+    </p> 
+    <p>
+    this is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first article
+    </p> 
+    <p>
+    this is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first articlethis is the content of my first article
+    </p> `}
+    
+} ;
+
 function createTemplate (data) {
     var title = data.title;
     var date = data.date;
@@ -61,15 +92,11 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one', function (req, res) {
-    res.send(createTemplate(articleOne));
+app.get('/articleName', function (req, res) {
+    var articleName = req.paras.articleName;
+    res.send(createTemplate(articles[articleName]));
 });
-app.get('/article-two', function (req, res) {
-    res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
-});
-app.get('/article-three', function(req, res) {
-   res.sendFile(path.join(__dirname, 'ui', 'article-three.html'));
-});
+
 app.get('/ui/style.css', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'style.css'));
 });
